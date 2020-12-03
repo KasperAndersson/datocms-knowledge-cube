@@ -21,7 +21,17 @@ export async function getStaticProps({ preview }) {
           seo: _seoMetaTags {
             ...metaTagsFragment
           }
-        }
+				}
+				allPages(
+					filter: {
+				 		includeInMenu: {
+				 			eq: "true"
+				 		}
+				 	}) {
+				 		id
+				 		title
+				 		slug
+				}
         allPosts(orderBy: date_DESC, first: 20) {
           title
           slug
@@ -65,16 +75,16 @@ export async function getStaticProps({ preview }) {
 
 export default function Index({ subscription }) {
   const {
-    data: { allPosts, site, blog },
+    data: { allPosts, allPages, site, blog },
   } = useQuerySubscription(subscription);
-
+	const menu = allPages;
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const metaTags = blog.seo.concat(site.favicon);
 
   return (
     <>
-      <Layout preview={subscription.preview}>
+      <Layout preview={subscription.preview} menu={menu}>
         <Head>{renderMetaTags(metaTags)}</Head>
         <Container>
           <Intro />

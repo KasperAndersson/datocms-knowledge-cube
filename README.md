@@ -1,4 +1,4 @@
-# A Blog example using Next.js and DatoCMS
+# A example of using Next.js & DatoCMS
 
 This example showcases a Next.js Blog using [DatoCMS](https://www.datocms.com/) as the data source. It fully supports [Preview Mode](https://www.datocms.com/docs/next-js/setting-up-next-js-preview-mode) with [DatoCMS real-time updates](https://www.datocms.com/docs/next-js/real-time-updates).
 

@@ -50,8 +50,17 @@ export async function getStaticProps({ params, preview = false }) {
               url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100})
             }
           }
-        }
-
+				}
+				allPages(
+					filter: {
+						includeInMenu: {
+							eq: "true"
+						}
+					}) {
+					id
+					title
+					slug
+				}
         morePosts: allPosts(orderBy: date_DESC, first: 2, filter: {slug: {neq: $slug}}) {
           title
           slug
@@ -98,13 +107,14 @@ export async function getStaticProps({ params, preview = false }) {
 
 export default function Post({ subscription, preview }) {
   const {
-    data: { site, post, morePosts },
+    data: { site, allPages, post, morePosts },
   } = useQuerySubscription(subscription);
 
+	const menu = allPages;
   const metaTags = post.seo.concat(site.favicon);
 
   return (
-    <Layout preview={preview}>
+    <Layout preview={preview} menu={menu}>
       <Head>{renderMetaTags(metaTags)}</Head>
       <Container>
         <Header />
