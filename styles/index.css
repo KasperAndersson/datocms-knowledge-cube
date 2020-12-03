@@ -1,5 +1,14 @@
 /* purgecss start ignore */
 @tailwind base;
+@layer base {
+	@font-face {
+		font-family: 'FavoritVariable';
+		src: url('/fonts/ABCFavoritVariable.woff2') format('woff2-variations');
+		font-weight: 400 700;
+		font-style: oblique 0deg 12deg;
+		font-display: block;
+	}
+}
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
